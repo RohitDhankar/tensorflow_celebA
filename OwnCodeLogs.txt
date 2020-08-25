@@ -1,0 +1,117 @@
+#### FOOBAR
+#Source == https://github.com/tensorflow/fairness-indicators/blob/master/fairness_indicators/documentation/examples/Fairness_Indicators_TFCO_CelebA_Case_Study.ipynb
+
+tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ code .
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ pip install git+https://github.com/google-research/tensorflow_constrained_optimization
+Collecting git+https://github.com/google-research/tensorflow_constrained_optimization
+  Cloning https://github.com/google-research/tensorflow_constrained_optimization to /tmp/pip-req-build-t6vv4ufg
+  Running command git clone -q https://github.com/google-research/tensorflow_constrained_optimization /tmp/pip-req-build-t6vv4ufg
+Requirement already satisfied: numpy in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tfco-nightly==0.3.dev20200825) (1.18.1)
+Requirement already satisfied: scipy in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tfco-nightly==0.3.dev20200825) (1.4.1)
+Requirement already satisfied: six in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tfco-nightly==0.3.dev20200825) (1.14.0)
+Requirement already satisfied: tensorflow>=1.14 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tfco-nightly==0.3.dev20200825) (2.2.0)
+Requirement already satisfied: google-pasta>=0.1.8 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.2.0)
+Requirement already satisfied: astunparse==1.6.3 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.6.3)
+Requirement already satisfied: wrapt>=1.11.1 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.12.1)
+Requirement already satisfied: h5py<2.11.0,>=2.10.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (2.10.0)
+Requirement already satisfied: gast==0.3.3 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.3.3)
+Requirement already satisfied: termcolor>=1.1.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.1.0)
+Requirement already satisfied: opt-einsum>=2.3.2 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (3.1.0)
+Requirement already satisfied: keras-preprocessing>=1.1.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.1.0)
+Requirement already satisfied: tensorflow-estimator<2.3.0,>=2.2.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (2.2.0)
+Requirement already satisfied: grpcio>=1.8.6 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.27.2)
+Requirement already satisfied: tensorboard<2.3.0,>=2.2.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (2.2.1)
+Requirement already satisfied: wheel>=0.26; python_version >= "3" in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.34.2)
+Requirement already satisfied: absl-py>=0.7.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.9.0)
+Requirement already satisfied: protobuf>=3.8.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (3.11.4)
+Requirement already satisfied: setuptools>=41.0.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (46.4.0.post20200518)
+Requirement already satisfied: werkzeug>=0.11.15 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.0.1)
+Requirement already satisfied: google-auth-oauthlib<0.5,>=0.4.1 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.4.1)
+Requirement already satisfied: markdown>=2.6.8 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (3.1.1)
+Requirement already satisfied: requests<3,>=2.21.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (2.21.0)
+Requirement already satisfied: google-auth<2,>=1.6.3 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.17.2)
+Requirement already satisfied: tensorboard-plugin-wit>=1.6.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.6.0)
+Requirement already satisfied: requests-oauthlib>=0.7.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from google-auth-oauthlib<0.5,>=0.4.1->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.3.0)
+Requirement already satisfied: urllib3<1.25,>=1.21.1 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (1.24.1)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (2020.4.5.1)
+Requirement already satisfied: rsa<5,>=3.1.4; python_version >= "3" in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from google-auth<2,>=1.6.3->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (4.0)
+Requirement already satisfied: cachetools<5.0,>=2.0.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from google-auth<2,>=1.6.3->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (3.1.1)
+Requirement already satisfied: pyasn1-modules>=0.2.1 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from google-auth<2,>=1.6.3->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.2.7)
+Requirement already satisfied: oauthlib>=3.0.0 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from requests-oauthlib>=0.7.0->google-auth-oauthlib<0.5,>=0.4.1->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (3.1.0)
+Requirement already satisfied: pyasn1>=0.1.3 in /home/dhankar/anaconda3/envs/tensorflow_gpuenv/lib/python3.8/site-packages (from rsa<5,>=3.1.4; python_version >= "3"->google-auth<2,>=1.6.3->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.14->tfco-nightly==0.3.dev20200825) (0.4.8)
+Building wheels for collected packages: tfco-nightly
+  Building wheel for tfco-nightly (setup.py) ... done
+  Created wheel for tfco-nightly: filename=tfco_nightly-0.3.dev20200825-py3-none-any.whl size=177289 sha256=de4193bd10df919c2aecb3e1a3ab8476016f3ae2fb745b6ecb2f9ddef91f2566
+  Stored in directory: /tmp/pip-ephem-wheel-cache-afwz0jcx/wheels/4a/3b/01/c1ce6a66d44855f29546a8dfacacde40fa2ecbf87f194c4b8c
+Successfully built tfco-nightly
+Installing collected packages: tfco-nightly
+Successfully installed tfco-nightly-0.3.dev20200825
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ 
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ ls
+README.md
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ touch OwnCodeLogs.txt
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ 
+
+#### FOOBAR
+
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ python tf_1.py
+Using:
+        • TensorFlow version: 2.2.0
+2020-08-25 21:59:57.283529: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2020-08-25 21:59:57.452797: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:57.453274: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1561] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1650 computeCapability: 7.5
+coreClock: 1.71GHz coreCount: 14 deviceMemorySize: 3.82GiB deviceMemoryBandwidth: 119.24GiB/s
+2020-08-25 21:59:57.513157: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2020-08-25 21:59:57.827859: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2020-08-25 21:59:58.039522: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2020-08-25 21:59:58.161318: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2020-08-25 21:59:58.512330: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2020-08-25 21:59:58.608826: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2020-08-25 21:59:59.251008: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-08-25 21:59:59.251354: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.252315: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.253040: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1703] Adding visible gpu devices: 0
+2020-08-25 21:59:59.280778: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-08-25 21:59:59.405508: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 3000000000 Hz
+2020-08-25 21:59:59.417909: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5607dde623f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-08-25 21:59:59.417934: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-08-25 21:59:59.429374: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.429594: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1561] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1650 computeCapability: 7.5
+coreClock: 1.71GHz coreCount: 14 deviceMemorySize: 3.82GiB deviceMemoryBandwidth: 119.24GiB/s
+2020-08-25 21:59:59.429626: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2020-08-25 21:59:59.429638: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2020-08-25 21:59:59.429649: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2020-08-25 21:59:59.429660: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2020-08-25 21:59:59.429670: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2020-08-25 21:59:59.429680: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2020-08-25 21:59:59.429690: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-08-25 21:59:59.429734: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.429947: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.430129: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1703] Adding visible gpu devices: 0
+2020-08-25 21:59:59.454240: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2020-08-25 21:59:59.644334: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-08-25 21:59:59.644411: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1108]      0 
+2020-08-25 21:59:59.644435: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1121] 0:   N 
+2020-08-25 21:59:59.644819: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.645759: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.646616: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2020-08-25 21:59:59.647381: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1247] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 2976 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1650, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2020-08-25 21:59:59.676083: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5607e1b41980 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2020-08-25 21:59:59.676170: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GTX 1650, Compute Capability 7.5
+Features:
+ tf.Tensor([[ 0.5983449   0.06276207  0.14631742  0.48481876 -0.23572342]], shape=(1, 5), dtype=float32)
+
+Weights:
+ tf.Tensor([[-2.2733312  -1.6592104  -0.2633568  -0.80923414  1.0294315 ]], shape=(1, 5), dtype=float32)
+
+Bias:
+ tf.Tensor([[1.5749502]], shape=(1, 1), dtype=float32)
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ 
+
+#### FOOBAR
+
+
