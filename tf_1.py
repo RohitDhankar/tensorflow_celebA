@@ -34,3 +34,31 @@ Weights:
 Bias:
  tf.Tensor([[1.5749502]], shape=(1, 1), dtype=float32)
 """
+
+"""
+
+    features = tf.random.normal((1, 5)) creates a tensor with shape (1, 5), one row and five columns, that contains random values from a normal distribution with a mean of zero and standard deviation of one.
+
+    weights = tf.random.normal((1, 5)) creates a tensor with shape (1, 5), one row and five columns, again containing random values from a normal distribution with a mean of zero and standard deviation of one.
+
+    bias = tf.random.normal((1, 1)) creates a single random value from a normal distribution.
+
+"""
+# Check shape of the 3 Tensors 
+print('Features Shape:', features.shape) #(1, 5)
+print('Weights Shape:', weights.shape) #(1, 5)
+print('Bias Shape:', bias.shape) #(1, 1)
+#
+
+def sigmoid_activation(param):
+    """ Sigmoid activation function
+        ---------
+        param: tf.Tensor. Must be one of the following types: 
+        bfloat16, half, float32, float64, complex64, complex128.
+    """
+    #result = 1/(1+tf.exp(-param))
+    result = param * 10
+    return result 
+result = sigmoid_activation(22.11)
+print(result)
+#

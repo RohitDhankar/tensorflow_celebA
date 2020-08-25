@@ -112,6 +112,42 @@ Bias:
  tf.Tensor([[1.5749502]], shape=(1, 1), dtype=float32)
 (tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ 
 
-#### FOOBAR
+#### FOOBAR_ERROR --- https://www.tensorflow.org/install/gpu#software_requirements
+> I may need to downgrade my version of CUDA , currently have == CUDA Version: 11.0 , this was upgraded for the OpenCv 
+
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ nvidia-smi
+Tue Aug 25 22:08:01 2020       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 450.51.05    Driver Version: 450.51.05    CUDA Version: 11.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 1650    On   | 00000000:01:00.0  On |                  N/A |
+|  0%   47C    P8     4W /  75W |    613MiB /  3910MiB |      1%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      1978      G   /usr/lib/xorg/Xorg                 14MiB |
+|    0   N/A  N/A      2231      G   /usr/bin/gnome-shell               48MiB |
+|    0   N/A  N/A      5913      G   /usr/lib/xorg/Xorg                268MiB |
+|    0   N/A  N/A      6194      G   /usr/bin/gnome-shell              133MiB |
+|    0   N/A  N/A      7529      G   /usr/lib/firefox/firefox            2MiB |
+|    0   N/A  N/A      7677      G   /usr/lib/firefox/firefox            2MiB |
+|    0   N/A  N/A      9287      G   ...token=9419754036791833062      128MiB |
+|    0   N/A  N/A      9609      G   /usr/lib/firefox/firefox            2MiB |
+|    0   N/A  N/A     15444      G   /usr/lib/firefox/firefox            2MiB |
+|    0   N/A  N/A     15707      G   /usr/lib/firefox/firefox            2MiB |
+|    0   N/A  N/A     18638      G   /usr/lib/firefox/firefox            2MiB |
++-----------------------------------------------------------------------------+
+(tensorflow_gpuenv) dhankar@dhankar-1:~/temp/tf_celebA/tensorflow_celebA$ 
+
+
 
 
